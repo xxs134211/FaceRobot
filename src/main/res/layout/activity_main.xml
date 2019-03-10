@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:baselineAligned="false">
+
+        <Button
+            android:id="@+id/btn0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G1"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G2"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G3"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G4"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G5"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G6"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G7"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G8"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:baselineAligned="false">
+
+        <Button
+            android:id="@+id/btn8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G9"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G10"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn_A"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G11"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn_B"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G12"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="100dp"
+        android:baselineAligned="false">
+
+        <Button
+            android:id="@+id/btn_C"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G13"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn_D"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G14"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn_E"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G15"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn_F"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/number_button_press_selector"
+            android:text="G16"
+            android:textColor="@color/snow"
+            android:textSize="20dp"></Button>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <ToggleButton
+            android:id="@+id/TbnBt"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.4"
+            android:background="@drawable/yuanjiao"
+            android:textColor="@color/snow"
+            android:textOff="蓝牙关闭  "
+            android:textOn="蓝牙开启  "
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:id="@+id/yuyin"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@drawable/ic_launcher_foreground"
+            android:padding="5dp"
+            android:theme="@style/AppTheme" />
+
+        <Button
+            android:id="@+id/BtnBtSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.4"
+            android:background="@drawable/yuanjiao"
+            android:text="蓝牙搜索"
+            android:textColor="@color/snow"
+            android:textSize="20dp" />
+
+    </TableRow>
+
+</TableLayout>

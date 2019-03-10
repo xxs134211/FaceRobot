@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/loginForm"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+
+	android:layout_marginLeft="30dp"
+	android:layout_marginRight="30dp"
+	android:background="@color/nocolor"
+	android:orientation="vertical">
+
+	<TableRow
+		android:layout_marginTop="20dp"
+		android:gravity="center_horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="动作组名称  "
+			android:textSize="10pt" />
+		<!-- 输入的文本框 -->
+		<EditText
+			android:id="@+id/cmd_name"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:hint="命令1"
+			android:selectAllOnFocus="true" />
+	</TableRow>
+
+	<TableRow android:gravity="center_horizontal">
+
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:text="命令内容"
+			android:textSize="10pt" />
+		<!-- 输入的文本框 -->
+		<EditText
+			android:id="@+id/cmd_content"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:hint="请填写命令内容" />
+	</TableRow>
+
+	<TableRow
+		android:layout_marginTop="30dp"
+		android:layout_marginBottom="10dp"
+		android:gravity="center_horizontal">
+
+		<Button
+			android:id="@+id/cancle_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_margin="10dp"
+			android:background="@drawable/bt_shape"
+			android:paddingLeft="40dp"
+			android:paddingRight="40dp"
+			android:text="取消"
+			android:textColor="@color/snow"
+			android:textSize="18sp" />
+
+		<Button
+			android:id="@+id/yes_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_margin="10dp"
+			android:background="@drawable/bt_shape"
+			android:paddingLeft="40dp"
+			android:paddingRight="40dp"
+			android:text="确定"
+			android:textColor="@color/snow"
+			android:textSize="18sp" />
+
+	</TableRow>
+
+</TableLayout>

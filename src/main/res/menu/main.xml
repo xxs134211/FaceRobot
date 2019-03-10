@@ -1,0 +1,14 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_about"
+        android:checkable="false"
+        android:checked="false"
+        android:title="@string/action_about" />
+    <item
+        android:id="@+id/action_help"
+        android:checkable="false"
+        android:checked="false"
+        android:title="帮助" />
+
+</menu>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout02"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="1dp"
+    android:paddingTop="1dp"
+    android:paddingRight="1dp"
+    android:paddingBottom="1dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:baselineAligned="false">
+
+
+        <ToggleButton
+            android:id="@+id/tog1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S1"
+            android:textOn="已选择"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S2"
+            android:textOn="S2"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S3"
+            android:textOn="S3"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S4"
+            android:textOn="S4"
+            android:textSize="20dp"></ToggleButton>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+
+        <ToggleButton
+            android:id="@+id/tog5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S5"
+            android:textOn="S5"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S6"
+            android:textOn="S6"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog7"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S7"
+            android:textOn="S7"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S8"
+            android:textOn="S8"
+            android:textSize="20dp"></ToggleButton>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:baselineAligned="false">
+
+
+        <ToggleButton
+            android:id="@+id/tog9"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S9"
+            android:textOn="S9"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog10"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S10"
+            android:textOn="S10"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog11"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S11"
+            android:textOn="S11"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog12"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S12"
+            android:textOn="S12"
+            android:textSize="20dp"></ToggleButton>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:baselineAligned="false">
+
+
+        <ToggleButton
+            android:id="@+id/tog13"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S13"
+            android:textOn="S13"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog14"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S14"
+            android:textOn="S14"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog15"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S15"
+            android:textOn="S15"
+            android:textSize="20dp"></ToggleButton>
+
+        <ToggleButton
+            android:id="@+id/tog16"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:textOff="S16"
+            android:textOn="S16"
+            android:textSize="20dp"></ToggleButton>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/pos_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/bt_shape"
+            android:gravity="center"
+            android:text="角度:-90"
+            android:textColor="@color/snow"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar_pos"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/pos_text"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="5"
+            android:max="2000"
+            android:progress="1000" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/sudu_text"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/bt_shape"
+            android:gravity="center"
+            android:text="速度:50"
+            android:textColor="@color/snow"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar_sudu"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/seekBar_left2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="5"
+            android:max="100"
+            android:progress="50" />
+
+    </TableRow>
+</TableLayout>
