@@ -28,7 +28,7 @@ public class AboutPage extends Activity {
         String mTV="1342110378";
         Toast ntoast=Toast.makeText(AboutPage.this,mTV,Toast.LENGTH_LONG);
         String mTV1="12345678";
-        ntoast.makeText(AboutPage.this,mTV1,Toast.LENGTH_SHORT).show();
+        Toast.makeText(AboutPage.this,mTV1,Toast.LENGTH_SHORT).show();
     }
 
 
