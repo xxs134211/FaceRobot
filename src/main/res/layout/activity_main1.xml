@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S1"
+            android:textOff="舵机1"
             android:textOn="已选择"
             android:textSize="20dp"></ToggleButton>
 
@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S2"
+            android:textOff="舵机2"
             android:textOn="S2"
             android:textSize="20dp"></ToggleButton>
 
@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S3"
+            android:textOff="舵机3"
             android:textOn="S3"
             android:textSize="20dp"></ToggleButton>
 
@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S4"
+            android:textOff="舵机4"
             android:textOn="S4"
             android:textSize="20dp"></ToggleButton>
     </TableRow>
@@ -69,7 +69,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S5"
+            android:textOff="舵机5"
             android:textOn="S5"
             android:textSize="20dp"></ToggleButton>
 
@@ -79,7 +79,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S6"
+            android:textOff="舵机6"
             android:textOn="S6"
             android:textSize="20dp"></ToggleButton>
 
@@ -89,7 +89,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S7"
+            android:textOff="舵机7"
             android:textOn="S7"
             android:textSize="20dp"></ToggleButton>
 
@@ -99,7 +99,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S8"
+            android:textOff="舵机8"
             android:textOn="S8"
             android:textSize="20dp"></ToggleButton>
     </TableRow>
@@ -117,7 +117,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S9"
+            android:textOff="舵机9"
             android:textOn="S9"
             android:textSize="20dp"></ToggleButton>
 
@@ -127,7 +127,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S10"
+            android:textOff="舵机10"
             android:textOn="S10"
             android:textSize="20dp"></ToggleButton>
 
@@ -137,7 +137,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S11"
+            android:textOff="舵机11"
             android:textOn="S11"
             android:textSize="20dp"></ToggleButton>
 
@@ -147,7 +147,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S12"
+            android:textOff="舵机12"
             android:textOn="S12"
             android:textSize="20dp"></ToggleButton>
     </TableRow>
@@ -165,7 +165,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S13"
+            android:textOff="舵机13"
             android:textOn="S13"
             android:textSize="20dp"></ToggleButton>
 
@@ -175,7 +175,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S14"
+            android:textOff="舵机14"
             android:textOn="S14"
             android:textSize="20dp"></ToggleButton>
 
@@ -185,7 +185,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S15"
+            android:textOff="舵机15"
             android:textOn="S15"
             android:textSize="20dp"></ToggleButton>
 
@@ -195,7 +195,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="1"
-            android:textOff="S16"
+            android:textOff="舵机16"
             android:textOn="S16"
             android:textSize="20dp"></ToggleButton>
     </TableRow>

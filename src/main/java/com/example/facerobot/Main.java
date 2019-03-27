@@ -27,7 +27,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TabHost;
@@ -57,12 +56,14 @@ import java.util.LinkedHashMap;
  * <p>
  * Description: <／p>
  * <p>
- * Copyright: Copyright (c) 2014<／p>
+ * Copyright: Copyright (c) 2019<／p>
  * 
- * @author Kevin Xu
- * @date Jan 7, 2014
- * @version 1.6
+ * @author xingxiaosong
+ * @date 2019.3.1
+ * @version 2.0
  */
+
+
 @SuppressLint("ShowToast")
 public class Main extends Activity {
 //	private TextView tv_show;
@@ -118,6 +119,8 @@ public class Main extends Activity {
     private static String TAG = "motor";
     private static String TAG1 = "action";
 	private Context context;
+	//语音识别标志位
+	int flag=0;
 
 	// 语音听写对象
 
@@ -137,9 +140,9 @@ public class Main extends Activity {
 
 
 
-	private Button btStart,btStop,btCancel;
+	private Button btStart;
 
-	private EditText etContent;
+	private TextView etContent;
 
 	private SharedPreferences mSharedPreferences;
 
@@ -185,7 +188,7 @@ public class Main extends Activity {
 			Manifest.permission.ACCESS_COARSE_LOCATION,
 			Manifest.permission.RECORD_AUDIO,
 			Manifest.permission.WRITE_EXTERNAL_STORAGE,
-			Manifest.permission.READ_EXTERNAL_STORAGE
+			Manifest.permission.READ_EXTERNAL_STORAGE,
 	};
 
 	//请求状态码
@@ -1039,7 +1042,7 @@ public class Main extends Activity {
 
 
 
-		etContent = (EditText) findViewById(R.id.et_content);
+		etContent = findViewById(R.id.et_content);
 
 	}
 
@@ -1362,53 +1365,60 @@ public class Main extends Activity {
 
 
 		if (temp.contains("微笑")) {
+
 			SendDnCmd("#0GC1" );
-			showTip("已开始执行");
-
-
-		}else if (temp.contains("舵机")) {
+			showTip("开始执行");
+		}else if (temp.contains("哈哈大笑")) {
 
 			showTip("开始执行");
 			SendDnCmd("#1GC1" );
+		} else if (temp.contains("喜悦")) {
 
+			showTip("开始执行");
+			SendDnCmd("#2GC1" );
+		} else if (temp.contains("惊讶")) {
 
-		} else if (temp.contains("自动模式")) {
+			showTip("开始执行");
+			SendDnCmd("#3GC1" );
+		}else if (temp.contains("兴奋")) {
 
-			showTip("已选择自动模式");
+			showTip("开始执行");
+			SendDnCmd("#4GC1" );
+		}else if (temp.contains("生气")) {
 
+			showTip("开始执行");
+			SendDnCmd("#5GC1" );
+		}else if (temp.contains("郁闷")) {
 
+			showTip("开始执行");
+			SendDnCmd("#6GC1" );
+		}else if (temp.contains("怀疑")) {
 
-		} else if (temp.contains("手动模式")) {
-
-			showTip("已选择手动模式");
-
-
-
+			showTip("开始执行");
+			SendDnCmd("#7GC1" );
 		}
+		else if (temp.contains("伤心")) {
+
+			showTip("开始执行");
+			SendDnCmd("#8GC1" );
+		}else if (temp.contains("卖萌")) {
+
+			showTip("开始执行");
+			SendDnCmd("#9GC1" );
+		}else
+			showTip("没有对应动作");
 
 
+		//显示服务器返回的识别内容
 		 etContent.setText(resultBuffer.toString());
 
 
-		etContent.setSelection(etContent.length());
+		//etContent.setText(etContent.length());
 
 	}
-	private void delay(int ms){
-
-		try {
-
-			Thread.currentThread();
-
-			Thread.sleep(ms);
-
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-
-		}
-
-	}
-
-
 
 }
+
+
+
+
