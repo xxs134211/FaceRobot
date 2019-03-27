@@ -162,7 +162,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="40dp"
         android:baselineAligned="false">
 
         <Button
@@ -212,6 +212,23 @@
 
     <TableRow
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+
+            android:id="@+id/et_content"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:textSize="30sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
 
@@ -227,14 +244,13 @@
             android:textOn="蓝牙开启  "
             android:textSize="20dp" />
 
-        <ImageButton
-            android:id="@+id/yuyin"
-            android:layout_width="53dp"
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:background="@drawable/ic_launcher_foreground"
             android:padding="5dp"
-            android:theme="@style/AppTheme" />
+            android:text="语音" />
 
         <Button
             android:id="@+id/BtnBtSearch"

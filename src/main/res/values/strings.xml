@@ -15,6 +15,11 @@
     <string name="title_other_devices">其他可用设备</string>
     <string name="button_scan">搜索设备</string>
     <string name="button_del_device">Del all device</string>
+    <string name="app_id">5c81ce64</string>
+    <string name="pref_key_iat_show">iat_show</string>
+
+    <string name="text_begin">请开始说话…</string>
+
 
     <!--  MainActivity -->
     <string name="test_str">test_str</string>

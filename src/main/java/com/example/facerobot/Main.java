@@ -5,16 +5,17 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,19 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import com.iflytek.cloud.ErrorCode;
+import com.iflytek.cloud.InitListener;
+import com.iflytek.cloud.RecognizerListener;
+import com.iflytek.cloud.RecognizerResult;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechRecognizer;
+import com.iflytek.cloud.ui.RecognizerDialog;
+import com.iflytek.cloud.ui.RecognizerDialogListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -86,7 +100,6 @@ public class Main extends Activity {
 	SharedPreferences.Editor editor;
 	private ToggleButton TbnBt;
 	private Button btnBtSearch;
-//	private ImageButton yuying_button;
 	private SeekBar mSeekBar1 = null;
 	private SeekBar mSeekBar2 = null;
 		//蓝牙相关
@@ -104,24 +117,75 @@ public class Main extends Activity {
     public static final String PREFER_NAME = "com.iflytek.setting";
     private static String TAG = "motor";
     private static String TAG1 = "action";
-	// 语音听写对象
-	//private SpeechRecognizer mIat;
-	// 语音听写UI
-	//private RecognizerDialog mIatDialog;
-	// 用HashMap存储听写结果
-	private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
-	private EditText mResultText;
-	private Toast mToast;
-	Toast toast;
-	private SharedPreferences mSharedPreferences;
-	// 引擎类型
-	//private String mEngineType = SpeechConstant.TYPE_CLOUD;
+	private Context context;
 
+	// 语音听写对象
+
+	private SpeechRecognizer mIat;
+
+	// 语音听写UI
+
+	private RecognizerDialog mIatDialog;
+
+	// 用HashMap存储听写结果
+
+	private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
+
+
+
+	private Toast mToast;
+
+
+
+	private Button btStart,btStop,btCancel;
+
+	private EditText etContent;
+
+	private SharedPreferences mSharedPreferences;
+
+	private int ret = 0; // 函数调用返回值
+
+
+	/**
+
+	 * 初始化监听器。
+
+	 */
+
+	private InitListener mInitListener = new InitListener() {
+
+
+
+		@Override
+
+		public void onInit(int code) {
+
+			Log.d("SpeechRecognizer init() code = " + code,"1");
+
+			if (code != ErrorCode.SUCCESS) {
+
+				showTip("初始化失败，错误码：" + code);
+
+			}
+
+		}
+
+	};
+
+
+	// 引擎类型
+
+	private String mEngineType = SpeechConstant.TYPE_CLOUD;
+
+	Toast toast;
 
 
 	//读写权限 具体权限加在字符串里面
 	private static String[] PERMISSIONS_STORAGE = {
-			Manifest.permission.ACCESS_COARSE_LOCATION
+			Manifest.permission.ACCESS_COARSE_LOCATION,
+			Manifest.permission.RECORD_AUDIO,
+			Manifest.permission.WRITE_EXTERNAL_STORAGE,
+			Manifest.permission.READ_EXTERNAL_STORAGE
 	};
 
 	//请求状态码
@@ -158,28 +222,34 @@ public class Main extends Activity {
         m.addTab(m.newTabSpec("tab2").setIndicator("单一器官控制").setContent(R.id.LinearLayout02));
 		preference = getSharedPreferences("record", MODE_PRIVATE);
 		editor = preference.edit();
-	//	yuying_button = (ImageButton) findViewById(R.id.yuyin);
+
+		initData();
+
+		findViewById();
+
+		setOnclickListener();
+
 		if (preference.getString("cmd_name[0]", null) == null)
 		{
-			editor.putString("cmd_name[0]", "G1");
-			editor.putString("cmd_name[1]", "G2");
-			editor.putString("cmd_name[2]", "G3");
-			editor.putString("cmd_name[3]", "G4");
+			editor.putString("cmd_name[0]", "表情1");
+			editor.putString("cmd_name[1]", "表情2");
+			editor.putString("cmd_name[2]", "表情3");
+			editor.putString("cmd_name[3]", "表情4");
 			
-			editor.putString("cmd_name[4]", "G5");
-			editor.putString("cmd_name[5]", "G6");
-			editor.putString("cmd_name[6]", "G7");
-			editor.putString("cmd_name[7]", "G8");
+			editor.putString("cmd_name[4]", "表情5");
+			editor.putString("cmd_name[5]", "表情6");
+			editor.putString("cmd_name[6]", "表情7");
+			editor.putString("cmd_name[7]", "表情8");
 			
-			editor.putString("cmd_name[8]", "G9");
-			editor.putString("cmd_name[9]", "G10");
-			editor.putString("cmd_name[10]", "G11");
-			editor.putString("cmd_name[11]", "G12");
+			editor.putString("cmd_name[8]", "表情9");
+			editor.putString("cmd_name[9]", "表情10");
+			editor.putString("cmd_name[10]", "表情11");
+			editor.putString("cmd_name[11]", "表情12");
 			
-			editor.putString("cmd_name[12]", "G13");
-			editor.putString("cmd_name[13]", "G14");
-			editor.putString("cmd_name[14]", "G15");
-			editor.putString("cmd_name[15]", "G16");
+			editor.putString("cmd_name[12]", "表情13");
+			editor.putString("cmd_name[13]", "表情14");
+			editor.putString("cmd_name[14]", "复位");
+			editor.putString("cmd_name[15]", "停止");
 			
 			editor.putString("cmd_content[0]", "#1GC1");
 			editor.putString("cmd_content[1]", "#2GC1");
@@ -236,16 +306,10 @@ public class Main extends Activity {
 		cmd_content[14] = preference.getString("cmd_content[14]", null);
 		cmd_content[15] = preference.getString("cmd_content[15]", null);
 		initView();
-		//SpeechUtility.createUtility(getBaseContext(), SpeechConstant.APPID +"=562d98d7");
-		// 使用SpeechRecognizer对象，可根据回调消息自定义界面；
-		//mIat = SpeechRecognizer.createRecognizer(Main.this, mInitListener);
-		
-		// 初始化听写Dialog，如果只使用有UI听写功能，无需创建SpeechRecognizer
-		// 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
-		//mIatDialog = new RecognizerDialog(Main.this, mInitListener);
+
 		mToast = (Toast) Toast.makeText(this, "", Toast.LENGTH_SHORT);
 		mSharedPreferences = getSharedPreferences(PREFER_NAME, Activity.MODE_PRIVATE);
-		//mEngineType = SpeechConstant.TYPE_CLOUD;
+
 		//蓝牙初始化
 		btAdapter = BluetoothAdapter.getDefaultAdapter();
 		TbnBt = (ToggleButton)findViewById(R.id.TbnBt);
@@ -284,39 +348,10 @@ public class Main extends Activity {
 	        	}
 			}
 		});
-//		yuying_button.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//
-//					mIatResults.clear();
-//					// 设置参数
-//					setParam();
-//					boolean isShowDialog = mSharedPreferences.getBoolean(
-//							"record", true);
-//					if (isShowDialog) {
-//						// 显示听写对话框
-//						mIatDialog.setListener(mRecognizerDialogListener);
-//						mIatDialog.show();
-//						showTip("record start");
-//					} else {
-//						// 不显示听写对话框
-//						//int ret = mIat.startListening(mRecognizerListener);
-//						//if (ret != ErrorCode.SUCCESS) {
-//						//	showTip("听写失败,错误码：" + ret);
-//						//} else {
-//						//	showTip("record start");
-//					//	}
-//					}
-//
-//
-//			}
-//		});
 	}
 
 	private void initView() {
-		button[0] = (Button) findViewById(R.id.btn0);
+		button[0] =findViewById(R.id.btn0);
 		button[0].setText(cmd_name[0]);
 		button[0].setOnClickListener(new key_press());
 		button[0].setOnLongClickListener(new key_longpress());
@@ -497,7 +532,7 @@ public class Main extends Activity {
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				System.out.println("拖动停止...");
 //				if(false == mRunStatus){
-//					Toast.makeText(MainActivity.this, "开关没有打开！", Toast.LENGTH_SHORT).show();
+//					Toast.makeText(Main.this, "开关没有打开！", Toast.LENGTH_SHORT).show();
 //				}
 			}
 			
@@ -881,7 +916,7 @@ public class Main extends Activity {
 	  //公用接口
   	public void DisplayToast(String str){
   		toast.setText(str);
-      	toast.setGravity(Gravity.TOP, 0, 220);
+      	//toast.setGravity(Gravity.TOP, 0, 220);
       	toast.show();
       	
       }
@@ -903,19 +938,6 @@ public class Main extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//		    case R.id.action_about:
-//			    openAboutPage();
-//			    return true;
-//			case R.id.action_help:
-//				openHelpPage();
-//			//return true;
-//		default:
-//			return super.onOptionsItemSelected(item);
-//		}
-//	}
 @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId()==R.id.action_about) {
@@ -937,182 +959,452 @@ public class Main extends Activity {
 		Intent intent = new Intent(Main.this, HelpPage.class);
 		startActivity(intent);
 	}
+	private void showTip(final String str) {
+		toast.setText(str);
+		//toast.setGravity(Gravity.TOP, 0, 220);
+		toast.show();
+	}
+	private void setOnclickListener(){
+
+		btStart.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+
+			public void onClick(View v) {
+
+				checkSoIsInstallSucceed();
+
+				etContent.setText(null);// 清空显示内容
+
+				mIatResults.clear();
+
+				// 设置参数
+
+				setParam();
+
+				boolean isShowDialog = mSharedPreferences.getBoolean(
+
+						getString(R.string.pref_key_iat_show), true);
+
+				if (isShowDialog) {
+
+					// 显示听写对话框
+
+					mIatDialog.setListener(mRecognizerDialogListener);
+
+					mIatDialog.show();
+
+					showTip(getString(R.string.text_begin));
+
+				} else {
+
+					// 不显示听写对话框
+
+					ret = mIat.startListening(mRecognizerListener);
+
+					if (ret != ErrorCode.SUCCESS) {
+
+						showTip("听写失败,错误码：" + ret);
+
+					} else {
+
+						showTip(getString(R.string.text_begin));
+
+					}
+
+				}
+
+			}
+
+		});
+
+
+
+
+
+
+
+
+	}
+
+
+
+	private void findViewById(){
+
+		btStart = (Button) findViewById(R.id.btn_start);
+
+
+
+		etContent = (EditText) findViewById(R.id.et_content);
+
+	}
+
+
+
+	private void initData(){
+
+		context = Main.this;
+
+		// 初始化识别无UI识别对象
+
+		// 使用SpeechRecognizer对象，可根据回调消息自定义界面；
+
+		mIat = SpeechRecognizer.createRecognizer(context, mInitListener);
+
+		// 初始化听写Dialog，如果只使用有UI听写功能，无需创建SpeechRecognizer
+
+		// 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
+
+		mIatDialog = new RecognizerDialog(context, mInitListener);
+
+		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+
+		mSharedPreferences = getSharedPreferences(Main.PREFER_NAME,
+
+				Activity.MODE_PRIVATE);
+
+	}
+
+
+
+	private void checkSoIsInstallSucceed(){
+
+		if( null == mIat ){
+
+			// 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
+
+			this.showTip( "创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化" );
+
+			return;
+
+		}
+
+	}
+
+
+
 
 
 
 
 	/**
-	 * 初始化监听器。
+
+	 * 参数设置
+
+	 *
+
+	 * @param
+
+	 * @return
+
 	 */
-//	private InitListener mInitListener = new InitListener() {
-//
-//		@Override
-//		public void onInit(int code) {
-//			Log.d(TAG, "SpeechRecognizer init() code = " + code);
-//			if (code != ErrorCode.SUCCESS) {
-//				showTip("初始化失败，错误码：" + code);
-//			}
-//		}
-//	};
-//	/**
-//	 * 听写监听器。
-//	 */
-//	private RecognizerListener mRecognizerListener = new RecognizerListener() {
-//
-//		@Override
-//		public void onBeginOfSpeech() {
-//			// 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
-//			showTip("开始说话");
-//		}
-//
-//		@Override
-//		public void onError(SpeechError error) {
-//			// Tips：
-//			// 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
-//			// 如果使用本地功能（语记）需要提示用户开启语记的录音权限。
-//			showTip(error.getPlainDescription(true));
-//		}
-//
-//		@Override
-//		public void onEndOfSpeech() {
-//			// 此回调表示：检测到了语音的尾端点，已经进入识别过程，不再接受语音输入
-//			showTip("结束说话");
-//		}
-//
-//		@Override
-//		public void onResult(RecognizerResult results, boolean isLast) {
-//			Log.d(TAG, results.getResultString());
-//			printResult(results);
-//
-//			if (isLast) {
-//				// TODO 最后的结果
-//			}
-//		}
-//
-//		@Override
-//		public void onVolumeChanged(int volume, byte[] data) {
-//			showTip("当前正在说话，音量大小：" + volume);
-//			Log.d(TAG, "返回音频数据："+data.length);
-//		}
-//
-//		@Override
-//		public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
-//			// 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
-//			// 若使用本地能力，会话id为null
-//			//	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
-//			//		String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
-//			//		Log.d(TAG, "session id =" + sid);
-//			//	}
-//		}
-//	};
-//
-//	private void printResult(RecognizerResult results) {
-//		String text = JsonParser.parseIatResult(results.getResultString());
-//		String sn = null;
-//		// 读取json结果中的sn字段
-//		try {
-//			JSONObject resultJson = new JSONObject(results.getResultString());
-//			sn = resultJson.optString("sn");
-//		} catch (JSONException e) {
-//			e.printStackTrace();
-//		}
-//
-//		mIatResults.put(sn, text);
-//
-//		StringBuffer resultBuffer = new StringBuffer();
-//		for (String key : mIatResults.keySet()) {
-//			resultBuffer.append(mIatResults.get(key));
-//		}
-//		String temp;
-//		temp = resultBuffer.toString();
-//		showTip(temp);
-//		int i = 0;
-//		Log.d(TAG1, "接收到：" + temp);
-//		for (i = 0; i < 16; i++)
-//		{
-//			if (temp.contains(cmd_name[i])){
-//				SendDnCmd(cmd_content[i]);
-//				return;
-//			}
-//		}
-//		if (temp.contains("自我介绍")){
-//			SendDnCmd("#18GC1");
-//
-//		}
-//		else if (temp.contains("舞")){
-//			SendDnCmd("#20GC1");
-//		}
-//		else if (temp.contains("招呼")){
-//			SendDnCmd("#6GC1");
-//		}
-//		else if (temp.contains("唱")){
-//			SendDnCmd("#19GC1");
-//		}
-//
-//	}
-//
-//	/**
-//	 * 听写UI监听器
-//	 */
-//	private RecognizerDialogListener mRecognizerDialogListener = new RecognizerDialogListener() {
-//		public void onResult(RecognizerResult results, boolean isLast) {
-//			printResult(results);
-//		}
-//
-//		/**
-//		 * 识别回调错误.
-//		 */
-//		public void onError(SpeechError error) {
-//			showTip(error.getPlainDescription(true));
-//		}
-//
-//	};
-	
-	
-	private void showTip(final String str) {
-		mToast.setText(str);
-		mToast.show();
+
+	public void setParam() {
+
+		// 清空参数
+
+		mIat.setParameter(SpeechConstant.PARAMS, null);
+
+
+
+		// 设置听写引擎
+
+		mIat.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
+
+		// 设置返回结果格式
+
+		mIat.setParameter(SpeechConstant.RESULT_TYPE, "json");
+
+
+
+		String lag = mSharedPreferences.getString("iat_language_preference",
+
+				"mandarin");
+
+		if (lag.equals("en_us")) {
+
+			// 设置语言
+
+			mIat.setParameter(SpeechConstant.LANGUAGE, "en_us");
+
+		} else {
+
+			// 设置语言
+
+			mIat.setParameter(SpeechConstant.LANGUAGE, "zh_cn");
+
+			// 设置语言区域
+
+			mIat.setParameter(SpeechConstant.ACCENT, lag);
+
+		}
+
+
+
+		// 设置语音前端点:静音超时时间，即用户多长时间不说话则当做超时处理
+
+		mIat.setParameter(SpeechConstant.VAD_BOS, mSharedPreferences.getString("iat_vadbos_preference", "4000"));
+
+
+
+		// 设置语音后端点:后端点静音检测时间，即用户停止说话多长时间内即认为不再输入， 自动停止录音
+
+		mIat.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("iat_vadeos_preference", "1000"));
+
+
+
+		// 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
+
+		mIat.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("iat_punc_preference", "0"));
+
+
+
+		// 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
+
+		// 注：AUDIO_FORMAT参数语记需要更新版本才能生效
+
+		mIat.setParameter(SpeechConstant.AUDIO_FORMAT,"wav");
+
+		mIat.setParameter(SpeechConstant.ASR_AUDIO_PATH, Environment.getExternalStorageDirectory()+"/msc/iat.wav");
+
 	}
-	
-//	/**
-//	 * 参数设置
-//	 *
-//	 * @param param
-//	 * @return
-//	 */
-//	public void setParam() {
-//		// 清空参数
-//		mIat.setParameter(SpeechConstant.PARAMS, null);
-//
-//		// 设置听写引擎
-//		mIat.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
-//		// 设置返回结果格式
-//		mIat.setParameter(SpeechConstant.RESULT_TYPE, "json");
-//
-//		String lag = mSharedPreferences.getString("iat_language_preference",
-//				"mandarin");
-//		if (lag.equals("en_us")) {
-//			// 设置语言
-//			mIat.setParameter(SpeechConstant.LANGUAGE, "en_us");
-//		} else {
-//			// 设置语言
-//			mIat.setParameter(SpeechConstant.LANGUAGE, "zh_cn");
-//			// 设置语言区域
-//			mIat.setParameter(SpeechConstant.ACCENT, lag);
-//		}
-//
-//		// 设置语音前端点:静音超时时间，即用户多长时间不说话则当做超时处理
-//		mIat.setParameter(SpeechConstant.VAD_BOS, mSharedPreferences.getString("iat_vadbos_preference", "4000"));
-//
-//		// 设置语音后端点:后端点静音检测时间，即用户停止说话多长时间内即认为不再输入， 自动停止录音
-//		mIat.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("iat_vadeos_preference", "1000"));
-//
-//		// 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
-//		mIat.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("iat_punc_preference", "1"));
-//
-//		// 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
-//		// 注：AUDIO_FORMAT参数语记需要更新版本才能生效
-//		mIat.setParameter(SpeechConstant.AUDIO_FORMAT,"wav");
-//		mIat.setParameter(SpeechConstant.ASR_AUDIO_PATH, Environment.getExternalStorageDirectory()+"/msc/iat.wav");
-//	}
+
+
+
+	/**
+
+	 * 听写UI监听器
+
+	 */
+
+	private RecognizerDialogListener mRecognizerDialogListener = new RecognizerDialogListener() {
+
+		public void onResult(RecognizerResult results, boolean isLast) {
+
+			printResult(results);
+
+		}
+
+
+
+		/**
+
+		 * 识别回调错误.
+
+		 */
+
+		public void onError(SpeechError error) {
+
+			showTip(error.getPlainDescription(true));
+
+		}
+
+
+
+	};
+
+
+
+
+
+
+
+	/**
+
+	 * 听写监听器。
+
+	 */
+
+	private RecognizerListener mRecognizerListener = new RecognizerListener() {
+
+
+
+		@Override
+
+		public void onBeginOfSpeech() {
+
+			// 此回调表示：sdk内部录音机已经准备好了，用户可以开始语音输入
+
+			showTip("开始说话");
+
+		}
+
+
+
+		@Override
+
+		public void onError(SpeechError error) {
+
+			// Tips：
+
+			// 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
+
+			// 如果使用本地功能（语记）需要提示用户开启语记的录音权限。
+
+			showTip(error.getPlainDescription(true));
+
+		}
+
+
+
+		@Override
+
+		public void onEndOfSpeech() {
+
+			// 此回调表示：检测到了语音的尾端点，已经进入识别过程，不再接受语音输入
+
+			showTip("结束说话");
+
+		}
+
+
+
+		@Override
+
+		public void onResult(RecognizerResult results, boolean isLast) {
+
+			Log.d(results.getResultString(),"2");
+
+			printResult(results);
+
+
+
+			if (isLast) {
+
+				// TODO 最后的结果
+
+			}
+
+		}
+
+
+
+		@Override
+
+		public void onVolumeChanged(int volume, byte[] data) {
+
+			showTip("当前正在说话，音量大小：" + volume);
+
+			Log.d("返回音频数据："+data.length,"3");
+
+		}
+
+
+
+		@Override
+
+		public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
+
+			// 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
+
+			// 若使用本地能力，会话id为null
+
+			//	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
+
+			//		String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
+
+			//		Log.d(TAG, "session id =" + sid);
+
+			//	}
+
+		}
+
+	};
+
+
+
+	private void printResult(RecognizerResult results) {
+		Log.i(TAG1, "执行printresult");
+
+		String text = JsonParser.parseIatResult(results.getResultString());
+
+
+
+		String sn = null;
+
+		// 读取json结果中的sn字段
+
+		try {
+
+			JSONObject resultJson = new JSONObject(results.getResultString());
+
+			sn = resultJson.optString("sn");
+
+		} catch (JSONException e) {
+
+			e.printStackTrace();
+
+		}
+
+
+
+		mIatResults.put(sn, text);
+
+
+
+		StringBuffer resultBuffer = new StringBuffer();
+
+		for (String key : mIatResults.keySet()) {
+
+			resultBuffer.append(mIatResults.get(key));
+
+		}
+		String temp;
+		temp = resultBuffer.toString();
+		//showTip(temp);
+
+		Log.d(TAG1, "接收到：" + temp);
+		System.out.println("开始发送数据"+ "\r\n");
+
+
+		if (temp.contains("微笑")) {
+			SendDnCmd("#0GC1" );
+			showTip("已开始执行");
+
+
+		}else if (temp.contains("舵机")) {
+
+			showTip("开始执行");
+			SendDnCmd("#1GC1" );
+
+
+		} else if (temp.contains("自动模式")) {
+
+			showTip("已选择自动模式");
+
+
+
+		} else if (temp.contains("手动模式")) {
+
+			showTip("已选择手动模式");
+
+
+
+		}
+
+
+		 etContent.setText(resultBuffer.toString());
+
+
+		etContent.setSelection(etContent.length());
+
+	}
+	private void delay(int ms){
+
+		try {
+
+			Thread.currentThread();
+
+			Thread.sleep(ms);
+
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
+
+
 }
