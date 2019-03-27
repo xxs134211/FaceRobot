@@ -17,13 +17,15 @@ public class LaunchActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //透明导航栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         //全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+       // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //加载启动界面
         setContentView(R.layout.activity_launch);
 
-        Button buton2 = (Button) findViewById(R.id.button2);
+        Button buton2 =findViewById(R.id.button2);
         buton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +36,8 @@ public class LaunchActivity extends Activity {
 
         });
 
+
+        //设置等待一段时间进入首页
         // Integer time = 5000;    //设置等待时间，单位为毫秒
         // Handler handler = new Handler();
         //当计时结束时，跳转至主界面
@@ -46,6 +50,9 @@ public class LaunchActivity extends Activity {
 //        }, time);
 //    }
     }
+
+
+
     private void setLightMode() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {

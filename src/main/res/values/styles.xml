@@ -6,9 +6,9 @@
     </style>
 
     <style name="MyActionBar" parent="@android:style/Widget.Holo.ActionBar">
-        <item name="android:background">@color/white</item>
-        <item name="android:backgroundStacked">@color/white</item>
-        <item name="android:backgroundSplit">@color/white</item>
+        <item name="android:background">@color/nocolor</item>
+        <item name="android:backgroundStacked">@color/nocolor</item>
+        <item name="android:backgroundSplit">@color/nocolor</item>
     </style>
     <style name="TitleBackgroundColor">
         <item name="android:background">#FF0000FF</item>
@@ -22,6 +22,13 @@
     </style>
 
         <!-- API 11 theme customizations can go here. -->
+
+    <style name="TranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
 
 </resources>

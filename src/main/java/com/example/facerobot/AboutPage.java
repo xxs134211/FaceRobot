@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 
 public class AboutPage extends Activity {
@@ -23,17 +22,4 @@ public class AboutPage extends Activity {
         setContentView(R.layout.about_page);
     }
        // Button button = (Button)findViewById(R.id.button);
-    public void onClick(View view)
-    {
-        String mTV="1342110378";
-        Toast ntoast=Toast.makeText(AboutPage.this,mTV,Toast.LENGTH_LONG);
-        String mTV1="12345678";
-        Toast.makeText(AboutPage.this,mTV1,Toast.LENGTH_SHORT).show();
-    }
-
-
-
-
-
-
 }

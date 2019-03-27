@@ -212,7 +212,49 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <ToggleButton
+            android:id="@+id/TbnBt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/yuanjiao"
+            android:textColor="@color/snow"
+            android:textOff="蓝牙关闭  "
+            android:textOn="蓝牙开启  "
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/yuyin"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/BtnBtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/yuanjiao"
+            android:text="蓝牙搜索"
+            android:textColor="@color/snow"
+            android:textSize="20dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
 
         <EditText
 
@@ -222,47 +264,9 @@
 
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="20dp"
             android:layout_weight="1"
-            android:textSize="30sp" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp">
-
-        <ToggleButton
-            android:id="@+id/TbnBt"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.4"
-            android:background="@drawable/yuanjiao"
-            android:textColor="@color/snow"
-            android:textOff="蓝牙关闭  "
-            android:textOn="蓝牙开启  "
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:padding="5dp"
-            android:text="语音" />
-
-        <Button
-            android:id="@+id/BtnBtSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.4"
-            android:background="@drawable/yuanjiao"
-            android:text="蓝牙搜索"
-            android:textColor="@color/snow"
-            android:textSize="20dp" />
-
+            android:gravity="center"
+            android:textSize="20sp" />
     </TableRow>
 
 </TableLayout>

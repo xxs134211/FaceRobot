@@ -7,7 +7,7 @@
     <color name="show_background">#8FFFFFFF</color>
     <color name="button_number_background">#7A33B5E5</color>
     <color name="button_oper_background">#A00099CC</color>
-     <color name="white">#FFFFFFFF</color> <!-- 白色 -->
+     <color name="white">#FFFFFF</color> <!-- 白色 -->
     <color name="ivory">#fffff0</color> <!-- 象牙色 --> 
     <color name="lightyellow">#ffffe0</color> <!-- 亮黄色 --> 
     <color name="yellow">#ffff00</color> <!-- 黄色 --> 
