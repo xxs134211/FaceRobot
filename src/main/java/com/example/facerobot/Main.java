@@ -1319,6 +1319,83 @@ public class Main extends Activity {
 	};
 
 
+	private void SendResult(String temp){
+		//哈哈大笑语句设定
+		String BigLaugh[] = new String[100];
+		BigLaugh[0]="哈哈大笑";BigLaugh[1]="你笑一笑";BigLaugh[2]="你会笑吗";BigLaugh[3]="你真可爱";
+		//伤心
+		String Sad[] = new String[100];
+		Sad[0]="伤心";Sad[1]="不开心";
+		//你会做什么
+		String DoWhat[] = new String[100];
+		DoWhat[0]="你会干什么";DoWhat[1]="你会做什么";DoWhat[2]="你都会做什么";DoWhat[3]="你都会干什么";DoWhat[4]="你会干啥";DoWhat[5]="你会什么";
+		//唱歌
+		String Sing[] = new String[100];
+		Sing[0]="唱歌";Sing[1]="唱一首歌";Sing[2]="你会唱歌吗";Sing[3]="唱个歌";
+		int j_1=0;
+
+		for(int i=0;i<4;i++)
+		{
+			if (temp.contains(BigLaugh[i])) {
+
+				j_1++;
+			}
+
+		}
+		if(j_1>0){
+			showTip("开始执行");
+			SendDnCmd("#7GC1\n" );
+			j_1=0;
+		}
+
+		for(int i=0;i<2;i++)
+		{
+			if (temp.contains(Sad[i])) {
+
+				j_1++;
+			}
+
+		}
+		if(j_1>0){
+			j_1=0;
+			showTip("开始执行伤心");
+			//SendDnCmd("#MP3=0005\n" );
+
+		}
+
+		for(int i=0;i<6;i++)
+		{
+			if (temp.contains(DoWhat[i])) {
+
+				j_1++;
+			}
+
+		}
+		if(j_1>0){
+			j_1=0;
+			showTip("开始执行");
+			SendDnCmd("#5GC1" );
+
+		}
+		for(int i=0;i<4;i++)
+		{
+			if (temp.contains(Sing[i])) {
+
+				j_1++;
+			}
+
+		}
+		if(j_1>0){
+			j_1=0;
+			showTip("开始执行");
+			SendDnCmd("#MP3=0004\n" );
+
+		}
+
+
+
+	}
+
 
 	private void printResult(RecognizerResult results) {
 		Log.i(TAG1, "执行printresult");
@@ -1363,59 +1440,93 @@ public class Main extends Activity {
 		Log.d(TAG1, "接收到：" + temp);
 		System.out.println("开始发送数据"+ "\r\n");
 
+		SendResult(temp);
 
-		if (temp.contains("微笑")) {
-
-			SendDnCmd("#0GC1" );
-			showTip("开始执行");
-		}else if (temp.contains("哈哈大笑")) {
-
-			showTip("开始执行");
-			SendDnCmd("#1GC1" );
-		} else if (temp.contains("喜悦")) {
-
-			showTip("开始执行");
-			SendDnCmd("#2GC1" );
-		} else if (temp.contains("惊讶")) {
-
-			showTip("开始执行");
-			SendDnCmd("#3GC1" );
-		}else if (temp.contains("兴奋")) {
-
-			showTip("开始执行");
-			SendDnCmd("#4GC1" );
-		}else if (temp.contains("生气")) {
-
-			showTip("开始执行");
-			SendDnCmd("#5GC1" );
-		}else if (temp.contains("郁闷")) {
-
-			showTip("开始执行");
-			SendDnCmd("#6GC1" );
-		}else if (temp.contains("怀疑")) {
-
-			showTip("开始执行");
-			SendDnCmd("#7GC1" );
-		}
-		else if (temp.contains("伤心")) {
-
-			showTip("开始执行");
-			SendDnCmd("#8GC1" );
-		}else if (temp.contains("卖萌")) {
-
-			showTip("开始执行");
-			SendDnCmd("#9GC1" );
-		}else
-			showTip("没有对应动作");
+//		if (temp.contains("微笑")) {
+//
+//			SendDnCmd("#11GC1" );
+//			showTip("开始执行");
+//		}else if (temp.contains("哈哈大笑")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#MP3=0005\n" );
+//		} else if (temp.contains("喜悦")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#13GC1" );
+//		} else if (temp.contains("惊讶")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#14GC1" );
+//		}else if (temp.contains("兴奋")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#15GC1" );
+//		}else if (temp.contains("生气")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#16GC1" );
+//		}else if (temp.contains("郁闷")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#16GC1" );
+//		}else if (temp.contains("怀疑")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#17GC1" );
+//		}
+//		else if (temp.contains("伤心")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#18GC1" );
+//		}else if (temp.contains("卖萌")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#9GC1" );
+//		}else if (temp.contains("你好")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#2GC1" );
+//		}
+//		else if (temp.contains("你会干什么")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#5GC1" );
+//		}else if (temp.contains("唱一首歌")) {
+//
+//			showTip("开始执行");
+//			SendDnCmd("#MP3=0004\n" );
+//		}else
+//			showTip("没有对应动作");
 
 
 		//显示服务器返回的识别内容
 		 etContent.setText(resultBuffer.toString());
+//		delay(3000);
+//		SendDnCmd("#6GC1\n" );
 
 
 		//etContent.setText(etContent.length());
 
 	}
+
+
+	private void delay(int ms){
+
+		try {
+
+			Thread.currentThread();
+
+			Thread.sleep(ms);
+
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
 
 }
 
